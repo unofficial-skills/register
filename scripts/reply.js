@@ -39,10 +39,10 @@ module.exports = {
     const pr = context.payload.issue || context.payload.pull_request;
     const { number } = pr;
 
-    await github.issues.createComment({
+    await github.rest.issues.createComment({
       owner: context.repo.owner,
       repo: context.repo.repo,
-      issue_number: number,
+      issue_number: context.issue.number,
       body: getInstructions(),
     });
   }
